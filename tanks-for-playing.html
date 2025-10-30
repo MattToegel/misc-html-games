@@ -23,12 +23,7 @@
         <!--Your canvas will come here -->
 
         <div id="stage">
-            <canvas
-                id="canvas"
-                width="1024"
-                height="512"
-                style="border: 1px solid lightgrey"
-            >
+            <canvas id="canvas" width="1024" height="512">
                 Your browser does not support the HTML5 canvas tag.
             </canvas>
         </div>
@@ -973,7 +968,12 @@
                     }
 
                     this.clearCanvas();
-
+                    this.context.strokeRect(
+                        1,
+                        1,
+                        this.canvas.width - 1,
+                        this.canvas.height - 1,
+                    );
                     for (let i = 0; i < this.gameObjects.length; i++) {
                         this.gameObjects[i].draw();
                     }
