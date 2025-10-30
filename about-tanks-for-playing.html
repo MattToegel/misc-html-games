@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — Tanks for Playing</title>
+  <meta name="description" content="About page for the Tanks for Playing HTML5 canvas demo (standalone, client-side)" />
+  <meta name="author" content="Matt Toegel" />
+  <style>
+    :root {
+      --max-width: 960px;
+      --primary: #0b78d1;
+      --accent: #0b78d1;
+      --muted: #6b7280;
+      --bg: #f7f9fb;
+      --card: #ffffff;
+      --radius: 8px;
+      --gap: 18px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #111827;
+    }
+    html,body { height: 100%; margin: 0; background: var(--bg); }
+    .wrap {
+      max-width: var(--max-width);
+      margin: 28px auto;
+      padding: 20px;
+    }
+    header.card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      box-shadow: 0 6px 20px rgba(16,24,40,0.06);
+    }
+    header h1 { margin: 0 0 6px 0; font-size: 1.5rem; }
+    header p.lead { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    nav.actions { margin-top: 12px; display:flex; gap:10px; flex-wrap:wrap; }
+    a.button {
+      display:inline-block;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(11,120,209,0.12);
+    }
+    a.primary{
+        background: var(--accent);
+        color: white;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-weight: 600;
+        box-shadow: 0 2px 6px rgba(11,120,209,0.12);
+    }
+    a.secondary {
+      background: #6b7280;
+      box-shadow: none;
+    }
+    main.card {
+      margin-top: var(--gap);
+      padding: 18px 22px;
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 6px 20px rgba(16,24,40,0.06);
+    }
+    h2 { margin-top: 0; }
+    p, li { color: #222; line-height: 1.5; }
+    ul { margin: 8px 0 8px 20px; }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; }
+    pre { background:#f8fafc; padding:12px; border-radius:6px; overflow:auto; font-size:0.9rem; }
+    footer { margin-top: 18px; color: var(--muted); font-size: 0.92rem; text-align: center; }
+    .small { font-size: 0.95rem; color: var(--muted); }
+    .two-col { display:flex; gap:20px; flex-wrap:wrap; }
+    .col { flex: 1 1 240px; min-width: 220px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="card" role="banner" aria-labelledby="about-title">
+      <div>
+        <h1 id="about</div>-title">About — Tanks for Playing</h1>
+        <small>About Page semi-generated with AI</small>
+        <p class="lead">A minimal HTML5 canvas 1v1 tank duel demo. This version runs entirely client-side and uses localStorage for configuration and saved plays. It was extracted from a project I did with one of my classes that made a php web application.</p>
+      </div>
+
+      <nav class="actions" aria-label="Quick actions">
+        <a class="button primary" href="tanks-for-playing.html">Play the game</a>
+        <a class="button secondary" href="#how-it-works">How it works</a>
+        <a class="button secondary" href="#storage">Storage & Config</a>
+      </nav>
+    </header>
+
+    <main class="card" role="main">
+      <section id="summary">
+        <h2>Summary</h2></h2>
+        <p><strong>Tanks for Playing</strong> is a compact demo showcasing a simple tank versus AI duel implemented using the HTML5 canvas and vanilla JavaScript. The aim is to be the last tank alive. The demo emphasizes small, readable game logic, a basic AI, and client-side persistence so it can run without a server.</p>
+      </section>
+
+      <section id="how-to-play" style="margin-top:18px;">
+        <h2>How to play</h2>
+        <ul>
+          <li><strong>Movement/rotation:</strong> Arrow keys or WASD — rotate and move the player's tank.</li>
+          <li><strong>Shoot:</strong> Space bar to fire.</li>
+          <li><strong></strong>Objective:</strong> Survive and eliminate the enemy tank. Matches typically need to last at least ~10s to be counted by the scoring logic.</li>
+        </ul>
+      </section>
+
+      <section id="how-it-works" style="margin-top:18px;">
+        <h2>How it works</h2>
+        <div class="two-col">
+          <div class="col">
+            <p class="small"><strong>Game loop</strong> — The animation</strong> loop updates objects (tanks, bullets) each frame, resolves collisions, and draws the scene to the canvas.</p>
+            <p class="small"><strong>Collision &</strong> combat</strong> — Bullets and tank collisions are detected using simple circle/rectangle checks. Damage reduces tank health; when a tank reaches zero it is disabled and the match ends.</p>
+          </div>
+          <div class="col">
+            <p class="small"><strong>AI</strong> — The enemy tank attempts</strong> to face the player and shoot when aligned, with simple movement and decision logic to create approachable but capable opponents.</p>
+            <p class="small"><strong>Stats</strong> — Tanks have tunable stats: <code>speed</code>, <code>range</code>, <code>turnSpeed</code>, <code>fireRate</code>, <code>health</code> and <code>damage</code>. Note: some builds transform values (e.g. logarithms) when computing effective cooldown/damage.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="storage" style="margin-top:18px;">
+        <h2>Local storage & customization</h2>
+        <p>This demo stores configuration and play history in the browser using <code>localStorage</code>. No server is required. Common storage keys used by the client-only build include:</p>
+        <p>The original was part of a fuller system that had MySQL backed persistence.</p>
+
+      </section>
+
+      <section id="upgrades" style="margin-top:18px;">
+        <h2>Upgrades & powerups</h2>
+        <p>The demo includes a simple mechanism to apply a +1 upgrade to one tank stat (speed, range, turnSpeed, fireRate, health, damage). The operation mutates the localStorage tank object.</p>
+       </section>
+
+      <section id="leaving" style="margin-top:18px;">
+        <h2>Leaving the page</h2>
+        <p class="small">Leaving counts as a loss to prevent chickening out of a losing battle. The fuller system handled this more elegantly.</p>
+      </section>
+
+      <section id="credits" style="margin-top:18px;">
+        <h2>Credits & resources</h2>
+        <ul>
+          <li>Author / adaptation: Matt Toegel (client-side demo)</li>
+          <li>Tutorial inspiration: <a href="https://spicyyoghurt.com/tutorials/html5-javascript-game-development/develop-a-html5-javascript-game" target="_blank" rel="noopener">Spicy Yoghurt — HTML5 JavaScript Game Development</a></li>
+        </ul>
+      </section>
+
+      <section id="license" style="margin-top:18px;">
+        <h2>License & source</h2>
+        <p class="small">This demo is intended for educational use. If you reuse or redistribute the code, please include attribution to the original author and tutorial where appropriate.</p>
+      </section>
+    </main>
+
+    <footer class="small">
+      &copy; 2020 Matt Toegel
+    </footer>
+  </div>
+</body>
+</html>
